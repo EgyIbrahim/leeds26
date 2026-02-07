@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquadSync | Elite Leaderboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #F8FAFC; --card: #FFFFFF; --accent: #6366F1; --border: rgba(0, 0, 0, 0.06); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #0F172A; }
+        .bento-card { background: var(--card); border: 1px solid var(--border); border-radius: 2.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); }
+        .employer-glow { position: relative; }
+        .employer-glow::after { content: ''; position: absolute; inset: -2px; background: linear-gradient(90deg, #6366F1, #A855F7); border-radius: 2.6rem; z-index: -1; opacity: 0.2; }
+    </style>
+</head>
+<body class="p-6 md:p-12 max-w-5xl mx-auto">
+
+    <header class="flex justify-between items-end mb-12 px-4">
+        <div>
+            <button onclick="window.location.href='homepage.html'" class="text-[10px] font-black opacity-30 uppercase tracking-[0.3em] mb-4 hover:opacity-100 transition-all">← Back to Hub</button>
+            <h1 class="text-5xl font-extrabold tracking-tighter italic uppercase text-indigo-600">Elite <span class="text-slate-900 opacity-20">Pipeline</span></h1>
+            <p class="text-xs font-bold text-slate-400 mt-2 uppercase tracking-widest italic">Industry Visibility: <span class="text-emerald-500">Active</span></p>
+        </div>
+        <div class="hidden md:block text-right">
+            <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest italic">Live Tracking By</p>
+            <p class="text-[10px] font-bold text-indigo-600 italic">PwC / Ligentia / IMDb</p>
+        </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="bento-card p-8 mt-6 order-2 md:order-1 text-center border-slate-100">
+            <span class="text-2xl font-black italic text-slate-300">#02</span>
+            <h3 class="text-lg font-black mt-2 italic">Alpha-Tech</h3>
+            <p class="text-2xl font-black text-indigo-600 mt-4">94.2% <span class="text-[10px] uppercase opacity-40">Sync</span></p>
+        </div>
+        <div class="bento-card p-10 employer-glow order-1 md:order-2 text-center bg-white">
+            <span class="text-4xl font-black italic text-indigo-600 shadow-indigo-500">#01</span>
+            <h3 class="text-2xl font-black mt-2 italic">Syntax_Error</h3>
+            <p class="text-4xl font-black text-indigo-600 mt-4">99.8% <span class="text-xs uppercase opacity-40">Sync</span></p>
+            <div class="mt-6 inline-block bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">Employer Choice</div>
+        </div>
+        <div class="bento-card p-8 mt-12 order-3 text-center border-slate-100">
+            <span class="text-2xl font-black italic text-slate-300">#03</span>
+            <h3 class="text-lg font-black mt-2 italic">Logic_Lords</h3>
+            <p class="text-2xl font-black text-indigo-600 mt-4">91.5% <span class="text-[10px] uppercase opacity-40">Sync</span></p>
+        </div>
+    </div>
+
+    <section class="bento-card overflow-hidden bg-white">
+        <div class="grid grid-cols-12 p-6 border-b border-slate-50 text-[10px] font-black uppercase tracking-widest text-slate-400 italic">
+            <div class="col-span-1">Rank</div>
+            <div class="col-span-5">Squad Name</div>
+            <div class="col-span-3 text-center">Avg. Engagement</div>
+            <div class="col-span-3 text-right">Status</div>
+        </div>
+
+        <div class="grid grid-cols-12 p-8 border-b border-indigo-50 bg-indigo-50/20 items-center">
+            <div class="col-span-1 font-black italic text-indigo-600">#02</div>
+            <div class="col-span-5 flex items-center gap-4">
+                <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-[10px] font-black">AT</div>
+                <span class="font-bold text-slate-800 italic">Alpha-Tech (Your Squad)</span>
+            </div>
+            <div class="col-span-3 text-center">
+                <span class="text-xs font-black text-emerald-500 italic">+15 Engagement</span>
+            </div>
+            <div class="col-span-3 text-right">
+                <span class="bg-indigo-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase italic">Top 1%</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-12 p-8 border-b border-slate-50 items-center opacity-60 italic">
+            <div class="col-span-1 font-black italic text-slate-300">#04</div>
+            <div class="col-span-5 flex items-center gap-4 italic italic">
+                <div class="w-8 h-8 rounded-lg bg-slate-200 text-slate-500 flex items-center justify-center text-[10px] font-black">BB</div>
+                <span class="font-bold text-slate-700 italic italic">Byte_Busters</span>
+            </div>
+            <div class="col-span-3 text-center italic italic">
+                <span class="text-xs font-black text-slate-400 italic italic">+8 Engagement</span>
+            </div>
+            <div class="col-span-3 text-right">
+                <span class="text-[9px] font-black uppercase tracking-widest text-slate-400 italic italic italic">On Track</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="mt-12 text-center italic">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic">
+            ✅ Rewards <span class="text-indigo-600">Improvement</span>, Not Just Perfection 
+        </p>
+    </footer>
+
+</body>
+</html>
