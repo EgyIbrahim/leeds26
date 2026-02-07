@@ -3,87 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SquadSync | The Vault</title>
+    <title>SquadSync | Rewards</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #F8FAFC; --card: #FFFFFF; --accent: #6366F1; --border: rgba(0, 0, 0, 0.06); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #0F172A; }
-        .reward-card { background: var(--card); border: 1px solid var(--border); border-radius: 2.5rem; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reward-card:hover { transform: translateY(-8px); box-shadow: 0 30px 40px -15px rgba(0,0,0,0.05); border-color: var(--accent); }
-        .locked { filter: grayscale(1) opacity(0.5); cursor: not-allowed; }
-    </style>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 </head>
-<body class="p-6 md:p-12 max-w-7xl mx-auto">
+<body class="flex min-h-screen p-4 md:p-8 transition-colors duration-500">
 
-    <header class="flex justify-between items-end mb-16 px-4">
-        <div>
-            <button onclick="window.location.href='homepage.html'" class="text-[10px] font-black opacity-30 uppercase tracking-[0.3em] mb-4 hover:opacity-100 transition-all">← Back to Hub</button>
-            <h1 class="text-5xl font-extrabold tracking-tighter italic uppercase text-indigo-600">The <span class="text-slate-900 opacity-20">Vault</span></h1>
-            <p class="text-xs font-bold text-slate-400 mt-2 uppercase tracking-widest italic">Redeem your Sync-Cred (SC)</p>
+    <aside id="sidebar" class="sidebar-transition hidden lg:flex flex-col w-64 p-8 bento-card border-none mr-8 sticky top-8 h-[calc(100vh-64px)] overflow-hidden">
+        <div class="flex items-center justify-between mb-12">
+            <div id="logo-full" class="text-2xl font-black italic tracking-tighter text-indigo-600 dark:text-indigo-400">SQUADSYNC</div>
+            <div id="logo-short" class="hidden text-2xl font-black italic text-indigo-600">S.</div>
+            <button onclick="toggleSidebar()" class="text-slate-300 hover:text-indigo-600 transition-colors">
+                <svg id="chevron" class="w-5 h-5 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
         </div>
-        <div class="bg-white border border-slate-100 px-8 py-4 rounded-[2rem] text-right shadow-sm">
-            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Available Balance</p>
-            <p class="text-3xl font-black text-indigo-600">2,450 <span class="text-sm font-bold opacity-40 italic">SC</span></p>
-        </div>
-    </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        
-        <div class="reward-card p-10 flex flex-col justify-between h-[400px]">
+        <nav class="flex flex-col gap-3">
+            <button onclick="window.location.href='homepage.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Dashboard</span>
+            </button>
+            <button onclick="window.location.href='schedule.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Schedule</span>
+            </button>
+            <button onclick="window.location.href='reels.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Campus Feed</span>
+            </button>
+            <button onclick="window.location.href='communities.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Communities</span>
+            </button>
+            <button onclick="window.location.href='leaderboard.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Leaderboard</span>
+            </button>
+            <button class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600">
+                <span class="sidebar-text">Rewards</span>
+            </button>
+        </nav>
+
+        <div id="auth-box" class="mt-auto p-5 bg-slate-50 dark:bg-zinc-800/50 rounded-[2rem] flex items-center justify-between">
+            <div class="sidebar-text">
+                <p class="text-xs font-bold whitespace-nowrap">John Doe #2026</p>
+            </div>
+            <button onclick="toggleMode()" class="w-10 h-5 rounded-full bg-slate-200 dark:bg-indigo-600 relative transition-all">
+                <div id="toggleCircle" class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-all dark:translate-x-5"></div>
+            </button>
+        </div>
+    </aside>
+
+    <main class="flex-1 max-w-6xl mx-auto space-y-10">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-end px-4 gap-8">
             <div>
-                <span class="bg-emerald-50 text-emerald-600 text-[10px] font-black px-4 py-1 rounded-full uppercase italic">Tier 1: Instant</span>
-                <h3 class="text-2xl font-black mt-6 italic">SU Coffee Voucher</h3>
-                <p class="text-sm text-slate-400 mt-2 font-medium">Redeemable at all campus canteens and cafes[cite: 422].</p>
+                <h1 class="text-6xl font-black tracking-tighter italic uppercase text-indigo-600">The <span class="text-slate-900 dark:text-white opacity-20">Vault</span></h1>
+                <p class="text-xs font-bold text-slate-400 mt-2 uppercase tracking-[0.2em] italic">Redeem Points for Academic & Social Assets</p>
             </div>
-            <div class="flex justify-between items-center pt-8 border-t border-slate-50">
-                <span class="text-2xl font-black italic">200 <span class="text-xs opacity-40">SC</span></span>
-                <button class="bg-indigo-600 text-white px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-700 transition-all">Redeem</button>
+            
+            <div class="flex items-center gap-6">
+                <div class="bento-card px-10 py-6 text-right border-none shadow-xl shadow-indigo-100/20 dark:shadow-none">
+                    <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 italic">Points Available</p>
+                    <p class="text-4xl font-black text-indigo-600">2,450 <span class="text-sm font-bold opacity-30 italic">PTS</span></p>
+                </div>
             </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <div class="bento-card p-10 flex flex-col justify-between h-[450px] border-none shadow-lg">
+                <div>
+                    <span class="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest italic">Tier 1 // Instant</span>
+                    <h3 class="text-3xl font-black mt-8 italic dark:text-white">SU Coffee Voucher</h3>
+                    <p class="text-sm text-slate-400 dark:text-zinc-500 mt-3 font-medium leading-relaxed italic">Redeemable at all University canteens and cafes.</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-end">
+                        <span class="text-3xl font-black dark:text-white">200 <span class="text-xs opacity-30 italic">PTS</span></span>
+                        <span class="text-[10px] font-bold text-emerald-500 uppercase italic">Available</span>
+                    </div>
+                    <button class="w-full py-5 bg-indigo-600 text-white font-black text-[10px] uppercase tracking-widest rounded-2xl shadow-xl shadow-indigo-100 dark:shadow-none hover:bg-indigo-700 transition-all">Redeem Now</button>
+                </div>
+            </div>
+
+            <div class="bento-card p-10 flex flex-col justify-between h-[450px] border-l-4 border-indigo-500 shadow-lg">
+                <div>
+                    <span class="bg-indigo-600 text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest italic">Tier 3 // Career</span>
+                    <h3 class="text-3xl font-black mt-8 italic dark:text-white">PwC Masterclass</h3>
+                    <p class="text-sm text-slate-400 dark:text-zinc-500 mt-3 font-medium italic leading-relaxed">Priority access to the "Future Systems" networking workshop with PwC leads.</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-end">
+                        <span class="text-3xl font-black dark:text-white">1,500 <span class="text-xs opacity-30 italic">PTS</span></span>
+                        <span class="text-[10px] font-bold text-indigo-500 uppercase italic">Highly Rated</span>
+                    </div>
+                    <button class="w-full py-5 bg-slate-900 dark:bg-white dark:text-indigo-900 text-white font-black text-[10px] uppercase tracking-widest rounded-2xl shadow-xl hover:scale-[1.02] transition-all">Claim Seat</button>
+                </div>
+            </div>
+
+            <div class="bento-card p-10 flex flex-col justify-between h-[450px] border-none opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+                <div>
+                    <span class="bg-slate-100 dark:bg-zinc-800 text-slate-500 text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest italic">Tier 4 // Semester</span>
+                    <h3 class="text-3xl font-black mt-8 italic dark:text-white">Hackathon Grant</h3>
+                    <p class="text-sm text-slate-400 dark:text-zinc-500 mt-3 font-medium italic leading-relaxed">£100 travel and equipment grant for international innovation events.</p>
+                </div>
+                <div class="flex justify-between items-center italic">
+                    <span class="text-3xl font-black dark:text-white">5,000 <span class="text-xs opacity-30 italic">PTS</span></span>
+                    <span class="text-[10px] font-bold text-rose-500 uppercase tracking-widest">Locked</span>
+                </div>
+            </div>
+
         </div>
 
-        <div class="reward-card p-10 flex flex-col justify-between h-[400px] bg-indigo-50/20 border-indigo-100">
-            <div>
-                <span class="bg-indigo-600 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase italic">Tier 3: Academic</span>
-                <h3 class="text-2xl font-black mt-6 italic">Employer Networking</h3>
-                <p class="text-sm text-slate-400 mt-2 font-medium italic">Priority access to career workshops with PwC and Ligentia[cite: 440, 441].</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bento-card p-10 flex items-center justify-between group hover:border-indigo-500 transition-all cursor-pointer shadow-sm">
+                <div>
+                    <h4 class="text-lg font-black uppercase italic tracking-tight dark:text-white">Library Pod Priority</h4>
+                    <p class="text-xs text-slate-400 mt-1 italic">Skip the queue for private study pods during exam season.</p>
+                </div>
+                <div class="text-right">
+                    <span class="block font-black text-indigo-600 text-xl italic">400 PTS</span>
+                    <span class="text-[9px] font-bold text-slate-300 uppercase italic">Limited Availability</span>
+                </div>
             </div>
-            <div class="flex justify-between items-center pt-8 border-t border-indigo-100">
-                <span class="text-2xl font-black italic">1,500 <span class="text-xs opacity-40 italic">SC</span></span>
-                <button class="bg-indigo-600 text-white px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-700 transition-all">Claim Seat</button>
+            <div class="bento-card p-10 flex items-center justify-between group hover:border-indigo-500 transition-all cursor-pointer shadow-sm">
+                <div>
+                    <h4 class="text-lg font-black uppercase italic tracking-tight dark:text-white">Seminar Time-Swap</h4>
+                    <p class="text-xs text-slate-400 mt-1 italic">Priority selection for your preferred tutorial windows.</p>
+                </div>
+                <div class="text-right">
+                    <span class="block font-black text-indigo-600 text-xl italic">1,000 PTS</span>
+                    <span class="text-[9px] font-bold text-slate-300 uppercase italic">Per Semester</span>
+                </div>
             </div>
         </div>
+    </main>
 
-        <div class="reward-card p-10 flex flex-col justify-between h-[400px] locked">
-            <div>
-                <span class="bg-slate-100 text-slate-500 text-[10px] font-black px-4 py-1 rounded-full uppercase italic italic">Tier 4: Semester</span>
-                <h3 class="text-2xl font-black mt-6 italic italic italic">Tech Voucher Grant</h3>
-                <p class="text-sm text-slate-400 mt-2 font-medium italic italic">£100 Tech/Travel grant for international hackathons[cite: 449, 450].</p>
-            </div>
-            <div class="flex justify-between items-center pt-8 border-t border-slate-100">
-                <span class="text-2xl font-black italic italic italic">5,000 <span class="text-xs opacity-40 italic italic">SC</span></span>
-                <span class="text-[10px] font-bold text-rose-500 uppercase tracking-widest">Locked</span>
-            </div>
-        </div>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('w-64');
+            sidebar.classList.toggle('w-20');
+            document.getElementById('chevron').classList.toggle('rotate-180');
+            document.getElementById('logo-full').classList.toggle('hidden');
+            document.querySelectorAll('.sidebar-text').forEach(t => t.classList.toggle('hidden'));
+        }
 
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 italic">
-        <div class="bg-white border border-slate-100 p-8 rounded-[2rem] flex items-center justify-between">
-            <div>
-                <h4 class="font-black italic uppercase italic">Library Priority Booking</h4>
-                <p class="text-xs text-slate-400">Unlock private study pods during exam weeks[cite: 424].</p>
-            </div>
-            <span class="font-black text-indigo-600 italic">400 SC</span>
-        </div>
-        <div class="bg-white border border-slate-100 p-8 rounded-[2rem] flex items-center justify-between italic italic">
-            <div>
-                <h4 class="font-black italic uppercase italic italic italic">Seminar Time-Swap</h4>
-                <p class="text-xs text-slate-400 italic">Priority selection for preferred tutorial slots[cite: 438].</p>
-            </div>
-            <span class="font-black text-indigo-600 italic italic">1,000 SC</span>
-        </div>
-    </div>
-
+        function toggleMode() {
+            document.documentElement.classList.toggle('dark');
+            const circle = document.getElementById('toggleCircle');
+            const isDark = document.documentElement.classList.contains('dark');
+            if(circle) { circle.style.transform = isDark ? 'translateX(24px)' : 'translateX(0)'; }
+        }
+    </script>
 </body>
 </html>

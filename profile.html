@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" id="mainHtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquadSync | Profile</title>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="p-6 md:p-12 max-w-6xl mx-auto space-y-10">
+
+    <header class="flex justify-between items-center px-4">
+        <button onclick="window.location.href='homepage.html'" class="text-[10px] font-black opacity-30 uppercase tracking-[0.3em] hover:opacity-100 transition-all">← Hub</button>
+        <div class="flex gap-4">
+            <span class="bg-indigo-50 text-indigo-600 text-[9px] font-black px-4 py-1.5 rounded-full uppercase italic">Level 14 Attendance Hero</span>
+            <button onclick="toggleMode()" class="w-12 h-6 rounded-full bg-slate-200 dark:bg-zinc-800 relative transition-colors duration-300">
+                <div id="toggleCircle" class="absolute top-1 left-1 w-4 h-4 bg-white dark:bg-indigo-500 rounded-full transition-all duration-300"></div>
+            </button>
+        </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 italic">
+        
+        <div class="md:col-span-4 space-y-8">
+            <div class="bento-card p-10 text-center italic italic">
+                <div class="w-32 h-32 rounded-[2.5rem] bg-indigo-600 mx-auto mb-6 flex items-center justify-center text-4xl font-black text-white shadow-xl shadow-indigo-100 italic">JD</div>
+                <h2 class="text-3xl font-black tracking-tighter italic italic italic italic">John Doe</h2>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Computer Science / Year 2</p>
+                <div class="mt-8 pt-8 border-t border-slate-50 italic italic italic">
+                    <p class="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-4 italic">Employer Visibility</p>
+                    <div class="flex justify-center gap-3 italic italic italic">
+                        <span class="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[9px] font-black italic italic italic">PwC Verified</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-[9px] font-black italic italic">IMDb Tier 2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card p-8 italic italic">
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Engagement Metrics</h4>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between text-[10px] font-bold uppercase mb-2">
+                            <span>Attendance Score</span><span>94%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 94%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] font-bold uppercase mb-2">
+                            <span>Participation Score</span><span>88%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 88%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-8 space-y-8">
+            
+            <div class="bento-card p-10 italic italic">
+                <div class="flex justify-between items-center mb-8 italic">
+                    <h3 class="text-xl font-black uppercase italic italic italic">My Squad: Alpha-Tech</h3>
+                    <span class="text-[10px] font-black text-indigo-600 bg-indigo-50 px-4 py-1 rounded-full uppercase italic italic">Rank #02</span>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 italic italic italic">
+                    <div class="text-center italic italic italic italic">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-2xl mx-auto mb-3 flex items-center justify-center font-bold text-indigo-600 italic italic">You</div>
+                        <p class="text-xs font-black italic italic italic">Synced</p>
+                    </div>
+                    <div class="text-center italic italic">
+                        <div class="w-12 h-12 bg-slate-100 rounded-2xl mx-auto mb-3 flex items-center justify-center font-bold text-slate-400 italic">M</div>
+                        <p class="text-xs font-bold text-rose-500 italic italic italic italic italic">Desynced</p>
+                    </div>
+                    <div class="text-center border-2 border-dashed border-slate-100 rounded-2xl p-2 flex flex-col justify-center italic italic italic">
+                        <p class="text-[8px] font-black text-slate-300 uppercase italic italic italic">Recruiting</p>
+                    </div>
+                </div>
+                <div class="mt-10 p-5 bg-slate-50 rounded-2xl border border-slate-100 italic">
+                    <p class="text-xs text-slate-500 italic"><strong>Current Goal:</strong> Complete 3 more tutorials as a full squad to unlock the <strong>+30 point Team Bonus</strong>.</p>
+                </div>
+            </div>
+
+            <div class="bento-card p-10 italic">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 italic">Recent Milestones</h3>
+                <div class="space-y-4 italic">
+                    <div class="flex items-center gap-6 p-4 bg-emerald-50 rounded-3xl border border-emerald-100 italic">
+                        <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-100">🏆</div>
+                        <div>
+                            <p class="text-sm font-black italic italic">Consistency King</p>
+                            <p class="text-[10px] text-emerald-600 font-bold uppercase italic italic italic">Unlocked 20 pts streak bonus</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6 p-4 bg-indigo-50 rounded-3xl border border-indigo-100 italic">
+                        <div class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center text-white">🤝</div>
+                        <div>
+                            <p class="text-sm font-black italic italic italic">Community Hero</p>
+                            <p class="text-[10px] text-indigo-600 font-bold uppercase italic italic italic italic">Earned 5 pts for support nudge</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleMode() {
+            const html = document.documentElement;
+            const circle = document.getElementById('toggleCircle');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                circle.style.transform = 'translateX(0)';
+            } else {
+                html.classList.add('dark');
+                circle.style.transform = 'translateX(24px)';
+            }
+        }
+    </script>
+</body>
+</html>

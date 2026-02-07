@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquadSync | Communities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="flex min-h-screen p-4 md:p-8 transition-colors duration-500">
+
+    <aside id="sidebar" class="sidebar-transition hidden lg:flex flex-col w-64 p-8 bento-card border-none mr-8 sticky top-8 h-[calc(100vh-64px)] overflow-hidden">
+        <div class="flex items-center justify-between mb-12">
+            <div id="logo-full" class="text-2xl font-black italic tracking-tighter text-indigo-600 dark:text-indigo-400">SQUADSYNC</div>
+            <div id="logo-short" class="hidden text-2xl font-black italic text-indigo-600">S.</div>
+            <button onclick="toggleSidebar()" class="text-slate-300 hover:text-indigo-600 transition-colors">
+                <svg id="chevron" class="w-5 h-5 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="3" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+        </div>
+
+        <nav class="flex flex-col gap-3">
+            <button onclick="window.location.href='homepage.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Dashboard</span>
+            </button>
+            <button onclick="window.location.href='schedule.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Schedule</span>
+            </button>
+            <button onclick="window.location.href='reels.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span class="sidebar-text">Campus Feed</span>
+            </button>
+            <button class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600">
+                <span class="sidebar-text">Communities</span>
+            </button>
+            <button onclick="window.location.href='leaderboard.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Leaderboard</span>
+            </button>
+            <button onclick="window.location.href='reward.html'" class="flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-sm text-slate-400 hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-all">
+                <span class="sidebar-text">Rewards</span>
+            </button>
+        </nav>
+
+        <div id="auth-box" class="mt-auto p-5 bg-slate-50 dark:bg-zinc-800/50 rounded-[2rem] flex items-center justify-between">
+            <div class="sidebar-text">
+                <p class="text-xs font-bold whitespace-nowrap">John Doe #2026</p>
+            </div>
+            <button onclick="toggleMode()" class="w-10 h-5 rounded-full bg-slate-200 dark:bg-indigo-600 relative transition-all">
+                <div id="toggleCircle" class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-all dark:translate-x-5"></div>
+            </button>
+        </div>
+    </aside>
+
+    <main class="flex-1 max-w-6xl mx-auto space-y-10">
+        <header class="flex flex-col md:flex-row justify-between items-end px-4 gap-6">
+            <div>
+                <h1 class="text-6xl font-black tracking-tighter italic uppercase text-indigo-600">Community <span class="text-slate-900 dark:text-white opacity-20">Network</span></h1>
+                <p class="text-xs font-bold text-slate-400 mt-2 uppercase tracking-widest italic">Supporting peer-to-peer resources</p>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <aside class="lg:col-span-4 space-y-6">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 italic">Discover Hubs</h3>
+                <div class="space-y-4">
+                    <div class="bento-card p-6 flex items-center justify-between hover:border-indigo-500 border-none shadow-sm cursor-pointer transition-all">
+                        <div>
+                            <p class="font-black italic dark:text-white">CS Lab Support</p>
+                            <p class="text-[10px] text-slate-400 font-bold">1.2k Members</p>
+                        </div>
+                        <button class="text-indigo-600 dark:text-indigo-400 font-black text-[10px] uppercase">Join</button>
+                    </div>
+                    <div class="bento-card p-6 flex items-center justify-between bg-indigo-50/50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-500/30 cursor-pointer">
+                        <div>
+                            <p class="font-black italic dark:text-white">Leeds Hack 2026</p>
+                            <p class="text-[10px] text-indigo-500 font-bold uppercase">Active Hub</p>
+                        </div>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-black text-[10px] uppercase">Member</span>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="lg:col-span-8 space-y-8">
+                <div class="bento-card p-8 border-none shadow-sm">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black italic">JD</div>
+                        <p class="text-xs font-bold text-slate-400 uppercase italic">Share a resource...</p>
+                    </div>
+                    <textarea placeholder="Ask for help or share session notes..." class="w-full p-6 bg-slate-50 dark:bg-zinc-800 dark:text-white rounded-3xl text-sm font-medium h-32 mb-4 outline-none focus:ring-2 focus:ring-indigo-500 transition-all"></textarea>
+                    <div class="flex justify-between items-center">
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest italic">Earn +5 Pts for helping others</p>
+                        <button class="bg-indigo-600 text-white px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-700 shadow-lg shadow-indigo-100 dark:shadow-none transition-all">Post Entry</button>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 italic">Recent Activity</h3>
+                    <div class="bento-card p-8 border-none shadow-sm">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-zinc-700"></div>
+                                <div>
+                                    <p class="text-xs font-black dark:text-white italic">Alex Morgan</p>
+                                    <p class="text-[9px] text-slate-400 uppercase font-bold italic">CS Lab Support</p>
+                                </div>
+                            </div>
+                            <span class="text-[9px] font-bold text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full uppercase italic">Question</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-zinc-300 leading-relaxed italic">"Does anyone have the logic diagram for the session 4 algorithms? Missed the last 10 mins and trying to sync up for the squad bonus!"</p>
+                        <div class="mt-6 flex gap-6 border-t border-slate-50 dark:border-zinc-800 pt-6">
+                            <button class="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase italic hover:text-indigo-800 transition-colors">Help Teammate</button>
+                            <button class="text-[10px] font-black text-slate-300 uppercase italic hover:text-slate-500 transition-colors">Nudge Support</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const chevron = document.getElementById('chevron');
+            const logoFull = document.getElementById('logo-full');
+            const sidebarTexts = document.querySelectorAll('.sidebar-text');
+            
+            sidebar.classList.toggle('w-64');
+            sidebar.classList.toggle('w-20');
+            chevron.classList.toggle('rotate-180');
+            logoFull.classList.toggle('hidden');
+            sidebarTexts.forEach(t => t.classList.toggle('hidden'));
+        }
+
+        function toggleMode() {
+            document.documentElement.classList.toggle('dark');
+            const circle = document.getElementById('toggleCircle');
+            const isDark = document.documentElement.classList.contains('dark');
+            if(circle) { circle.style.transform = isDark ? 'translateX(24px)' : 'translateX(0)'; }
+        }
+    </script>
+</body>
+</html>

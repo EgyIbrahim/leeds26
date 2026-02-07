@@ -5,59 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SquadSync | Secure Access</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #F8FAFC; --accent: #6366F1; --border: rgba(0, 0, 0, 0.06); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #0F172A; }
-        .auth-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 3rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.03); }
-        .input-field { background: #F1F5F9; border: 1px solid transparent; transition: all 0.2s; }
-        .input-field:focus { border-color: var(--accent); background: #FFFFFF; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); outline: none; }
-    </style>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 </head>
-<body class="flex items-center justify-center min-h-screen p-6">
+<body class="flex items-center justify-center min-h-screen p-6 overflow-hidden">
+    <div class="mesh-bg"></div>
 
-    <div class="auth-card w-full max-w-lg p-12 text-center">
+    <div class="absolute top-8 right-8">
+        <button onclick="toggleMode()" class="w-12 h-6 rounded-full bg-slate-200 dark:bg-zinc-800 relative transition-colors duration-300">
+            <div id="toggleCircle" class="absolute top-1 left-1 w-4 h-4 bg-white dark:bg-indigo-500 rounded-full transition-all duration-300 shadow-sm"></div>
+        </button>
+    </div>
+
+    <div class="bento-card w-full max-w-lg p-12 text-center border-none shadow-2xl">
         <div class="mb-10">
             <h1 class="text-3xl font-black italic tracking-tighter text-indigo-600 uppercase">SquadSync</h1>
-            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mt-2">Systems Rebooted // University of Leeds</p>
+            <p class="text-[10px] font-black text-slate-400 dark:text-zinc-500 uppercase tracking-[0.4em] mt-2 italic">Systems Rebooted // Access Portal</p>
         </div>
 
-        <div class="flex bg-slate-100 p-1.5 rounded-2xl mb-8">
-            <button id="loginTab" onclick="toggleAuth('login')" class="flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl bg-white shadow-sm">Sign In</button>
-            <button id="signupTab" onclick="toggleAuth('signup')" class="flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl opacity-40">Create Squad</button>
+        <div class="flex bg-slate-50 dark:bg-zinc-800/50 p-1.5 rounded-2xl mb-8">
+            <button id="loginTab" onclick="toggleAuth('login')" class="flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl bg-white dark:bg-zinc-700 dark:text-white shadow-sm transition-all">Sign In</button>
+            <button id="signupTab" onclick="toggleAuth('signup')" class="flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl opacity-40 dark:text-zinc-400 transition-all">Create Squad</button>
         </div>
 
-        <form id="authForm" class="space-y-4 text-left" onsubmit="return false;">
+        <form id="authForm" class="space-y-5 text-left" onsubmit="return false;">
             <div id="nameField" class="hidden">
-                <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-1 block">Full Name</label>
-                <input type="text" placeholder="Enter your name" class="input-field w-full p-4 rounded-2xl text-sm font-bold">
+                <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-2 block italic">Full Name</label>
+                <input type="text" placeholder="Your Name" class="w-full p-4 bg-slate-50 dark:bg-zinc-800 dark:text-white border border-transparent focus:border-indigo-500 rounded-2xl text-sm font-bold outline-none transition-all">
             </div>
 
             <div>
-                <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-1 block">University Email</label>
-                <input type="email" placeholder="student.id@leeds.ac.uk" class="input-field w-full p-4 rounded-2xl text-sm font-bold">
+                <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-2 block italic">University Email</label>
+                <input type="email" placeholder="student.id@leeds.ac.uk" class="w-full p-4 bg-slate-50 dark:bg-zinc-800 dark:text-white border border-transparent focus:border-indigo-500 rounded-2xl text-sm font-bold outline-none transition-all">
             </div>
 
             <div id="squadField" class="hidden">
-                <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-1 block">Squad Preference</label>
-                <select class="input-field w-full p-4 rounded-2xl text-sm font-bold appearance-none">
-                    <option>Join Auto-Match Squad</option>
-                    <option>Create Friendship Squad</option>
-                    <option>Join Course-Specific Unit</option>
+                <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-2 block italic">Squad Preference</label>
+                <select class="w-full p-4 bg-slate-50 dark:bg-zinc-800 dark:text-white border border-transparent focus:border-indigo-500 rounded-2xl text-sm font-bold outline-none transition-all appearance-none">
+                    <option>Auto-Match Squad</option>
+                    <option>Existing Friendship Squad</option>
+                    <option>Course-Specific Unit</option>
                 </select>
             </div>
 
             <div class="pt-4">
-                <button onclick="window.location.href='homepage.html'" class="w-full py-5 bg-indigo-600 text-white font-black rounded-[2rem] shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition-all uppercase tracking-[0.2em] text-xs">
-                    Authorize & Sync Device
+                <button onclick="window.location.href='homepage.html'" class="w-full py-5 bg-indigo-600 text-white font-black rounded-2xl shadow-xl shadow-indigo-100 dark:shadow-none hover:bg-indigo-700 transition-all uppercase tracking-[0.2em] text-xs">
+                    Authorize Device & Sync
                 </button>
             </div>
         </form>
 
-        <div class="mt-10 pt-8 border-t border-slate-50">
-            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest leading-relaxed">
-                By syncing, you agree to <span class="text-indigo-500">Device Binding</span>[cite: 396]. <br>
-                Attendance is verified via <span class="text-indigo-500">Secure Geofencing</span>[cite: 454].
+        <div class="mt-10 pt-8 border-t border-slate-50 dark:border-zinc-800">
+            <p class="text-[9px] text-slate-400 dark:text-zinc-500 font-bold uppercase tracking-widest leading-relaxed italic">
+                Security Protocol: <span class="text-indigo-500">Hardware-ID Binding Active</span> <br>
+                Verification: <span class="text-indigo-500">Leeds Campus Geofence</span>
             </p>
         </div>
     </div>
@@ -68,13 +70,22 @@
             document.getElementById('nameField').classList.toggle('hidden', isLogin);
             document.getElementById('squadField').classList.toggle('hidden', isLogin);
             
-            document.getElementById('loginTab').classList.toggle('bg-white', isLogin);
-            document.getElementById('loginTab').classList.toggle('shadow-sm', isLogin);
-            document.getElementById('loginTab').classList.toggle('opacity-40', !isLogin);
+            document.getElementById('loginTab').className = isLogin 
+                ? "flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl bg-white dark:bg-zinc-700 dark:text-white shadow-sm" 
+                : "flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl opacity-40 dark:text-zinc-400";
             
-            document.getElementById('signupTab').classList.toggle('bg-white', !isLogin);
-            document.getElementById('signupTab').classList.toggle('shadow-sm', !isLogin);
-            document.getElementById('signupTab').classList.toggle('opacity-40', isLogin);
+            document.getElementById('signupTab').className = !isLogin 
+                ? "flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl bg-white dark:bg-zinc-700 dark:text-white shadow-sm" 
+                : "flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl opacity-40 dark:text-zinc-400";
+        }
+
+        function toggleMode() {
+            document.documentElement.classList.toggle('dark');
+            const circle = document.getElementById('toggleCircle');
+            const isDark = document.documentElement.classList.contains('dark');
+            if(circle) {
+                circle.style.transform = isDark ? 'translateX(24px)' : 'translateX(0)';
+            }
         }
     </script>
 </body>

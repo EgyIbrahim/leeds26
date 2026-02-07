@@ -1,0 +1,71 @@
+/* SquadSync Master Stylesheet // 2026 */
+
+/* Option 2: Deep Ocean Theme */
+:root { 
+    --bg: #F0F9FF; /* Sky-50 */
+    --card: #FFFFFF; 
+    --accent: #0EA5E9; /* Sky-500 */
+    --border: rgba(14, 165, 233, 0.15); 
+    --text: #0C4A6E; /* Sky-900 */
+}
+
+.dark { 
+    --bg: #0B1120 !important; /* Dark Navy */
+    --card: #152035 !important; /* Navy Blue */
+    --accent: #38BDF8 !important; /* Sky-400 */
+    --border: rgba(56, 189, 248, 0.2) !important; 
+    --text: #F0F9FF !important; 
+}
+body { 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    background: var(--bg) !important; 
+    color: var(--text) !important; 
+    transition: background 0.4s ease, color 0.4s ease; 
+    margin: 0;
+}
+
+/* Fixed Bento Card - Removed '!important' from background to allow overrides */
+.bento-card { 
+    background: var(--card); 
+    border: 1px solid var(--border) !important; 
+    border-radius: 2.5rem; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); 
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.bento-card:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); 
+    border-color: var(--accent) !important;
+}
+
+/* Sidebar Transition */
+.sidebar-transition { 
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease; 
+}
+
+/* Status Pulse */
+.status-pulse { position: relative; }
+.status-pulse::after { 
+    content: ''; position: absolute; inset: -4px; border-radius: 50%; 
+    background: #10B981; opacity: 0.3; animation: pulse 2s infinite; 
+}
+
+@keyframes pulse { 
+    0% { transform: scale(1); opacity: 0.3; } 
+    100% { transform: scale(2); opacity: 0; } 
+}
+
+/* Progress Bars */
+.progress-bar { background: rgba(99, 102, 241, 0.1); border-radius: 1rem; height: 6px; overflow: hidden; }
+.progress-fill { background: var(--accent); height: 100%; border-radius: 1rem; }
+
+/* Background Mesh */
+.mesh-bg {
+    position: fixed; inset: 0; z-index: -1;
+    background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.08), transparent 40%);
+}
+
+.dark .mesh-bg {
+    background: radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.12), transparent 40%);
+}
